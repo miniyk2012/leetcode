@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from functools import lru_cache
 
 class Employee:
     def __init__(self, name):
