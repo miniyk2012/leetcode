@@ -142,3 +142,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+/5_the_builder_pattern/sine.png
