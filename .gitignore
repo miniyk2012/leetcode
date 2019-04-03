@@ -143,3 +143,4 @@ venv.bak/
 .mypy_cache/
 
 /5_the_builder_pattern/sine.png
+/desgin_pattern/_1_state_pattern/lprof0
