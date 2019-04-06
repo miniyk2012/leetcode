@@ -6,43 +6,25 @@ https://github.com/CreatCodeBuild/leetcode-solutions/blob/master/Python3/100_Sam
 """
 
 from typing import List
-
-
-class TreeNode:
-    """
-    Definition for a binary tree node.
-    """
-
-    def __init__(self, x):
-        self.val = x
-        self.left: TreeNode = None
-        self.right: TreeNode = None
+from tree import TreeNode, construct_tree
 
 
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         ip = self.iterate(p)
         iq = self.iterate(q)
-        p_node: TreeNode
-        q_node: TreeNode
-        for p_node in ip:
+        for p_val in ip:
             try:
-                q_node = next(iq)
+                q_val = next(iq)
             except StopIteration:
                 return False
-            both_true = False
-            if p_node and q_node:
-                both_true = True
-                if p_node.val != q_node.val:
-                    return False
-            if not both_true and (p_node or q_node):
+            if p_val != q_val:
                 return False
         try:
             next(iq)
         except StopIteration:
             return True
-        else:
-            return False
+        return False
 
     @staticmethod
     def iterate(t: TreeNode):
@@ -51,7 +33,24 @@ class Solution:
         q: List[TreeNode] = [t]
         while q:
             ret: TreeNode = q.pop(0)
-            yield ret
+            if ret:
+                yield ret.val
+            else:
+                yield None
             if ret:
                 q.append(ret.left)
                 q.append(ret.right)
+
+
+def test_same_tree():
+    l1 = [1, 2, 4]
+    l2 = [1, 2, 3, None, 4, 5, 6]
+    t1 = construct_tree(l1)
+    t2 = construct_tree(l2)
+    s = Solution()
+    print()
+    for i in s.iterate(t1):
+        print(i, end=' ')
+    print()
+    for i in s.iterate(t2):
+        print(i, end=' ')
