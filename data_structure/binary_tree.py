@@ -1,4 +1,4 @@
-from typing import Union, Optional, Callable
+from typing import Union, Optional, Callable, Generator, Any
 
 Num = Union[int, float]
 
@@ -35,22 +35,107 @@ class Tree:
     def pre_order(self, f: Callable) -> None:
         f(self.val)
         if self.left:
-            self.left.in_order(f)
+            self.left.pre_order(f)
         if self.right:
-            self.right.in_order(f)
+            self.right.pre_order(f)
 
     def post_order(self, f: Callable) -> None:
         if self.left:
-            self.left.in_order(f)
+            self.left.post_order(f)
         if self.right:
-            self.right.in_order(f)
+            self.right.post_order(f)
         f(self.val)
 
+    def in_order_g(self) -> Generator:
+        if self.left:
+            yield from self.left.in_order_g()
+        yield self.val
+        if self.right:
+            yield from self.right.in_order_g()
+
+    def post_order_g(self) -> Generator:
+        if self.left:
+            yield from self.left.post_order_g()
+        if self.right:
+            yield from self.right.post_order_g()
+        yield self.val
+
+    def pre_order_g(self) -> Generator:
+        yield self.val
+        if self.left:
+            yield from self.left.pre_order_g()
+        if self.right:
+            yield from self.right.pre_order_g()
+
+    def sum(self) -> Num:
+        s = 0
+
+        def add(v):
+            nonlocal s
+            s += v
+
+        self.pre_order(add)
+        return s
+
+    def product(self):
+        s = 1
+
+        def product(v):
+            nonlocal s
+            s *= v
+
+        self.pre_order(product)
+        return s
+
+    def reduce(self, reducer: Callable[[Num, Num], Num]) -> Num:
+        g = self.pre_order_g()
+        s = next(g)
+        for v in g:
+            s = reducer(s, v)
+        return s
+
+    def map(self, mapper: Callable[[Num], Num]) -> Generator:
+        for v in self.pre_order_g():
+            yield mapper(v)
+
+    def contain(self, val: Num) -> bool:
+        for v in self.pre_order_g():
+            if v == val:
+                return True
+        return False
 
 if __name__ == '__main__':
     t = Tree(0)
-    t.add(-1)
-    t.add(-2)
     t.add(1)
+    t.add(-2)
+    t.add(3)
     t.add(2)
-    t.post_order(lambda v: print(v))
+
+    """
+        0
+       /  \ 
+    -2      1
+              \
+                3
+               /
+              2 
+    """
+    t.pre_order(print)
+    print()
+    for v in t.pre_order_g():
+        print(v)
+    print(f'sum={t.sum()}')
+    ans = t.reduce(lambda a, b: a + b)
+    print(f'sum={ans}')
+
+    print(f'product={t.product()}')
+    ans = t.reduce(lambda a, b: a * b)
+    print(f'product={ans}')
+
+    values = t.map(lambda x: 2 * x)
+    for v in values:
+        print(v)
+    print(t.contain(1))
+    print(t.contain(3))
+    print(t.contain(1.2))
+
