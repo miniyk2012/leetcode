@@ -104,6 +104,7 @@ class Tree:
                 return True
         return False
 
+
 if __name__ == '__main__':
     t = Tree(0)
     t.add(1)
@@ -138,4 +139,3 @@ if __name__ == '__main__':
     print(t.contain(1))
     print(t.contain(3))
     print(t.contain(1.2))
-
