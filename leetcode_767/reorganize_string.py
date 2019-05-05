@@ -5,11 +5,11 @@ from math import ceil
 
 class Solution:
     def reorganizeString(self, S: str) -> str:
-        m = defaultdict(lambda: 0)
+        m: defaultdict = defaultdict(lambda: 0)
         for s in S:
             m[s] += 1
 
-        q = []
+        q: list = []
         for k, v in m.items():
             heapq.heappush(q, [-v, k])
 
