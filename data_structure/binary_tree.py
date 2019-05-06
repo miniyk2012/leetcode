@@ -67,6 +67,13 @@ class Tree:
         if self.right:
             yield from self.right.pre_order_g()
 
+    def traverse(self) -> Generator:
+        smaller = yield self.val
+        if smaller and self.left:
+            yield from self.left.traverse()
+        elif (not smaller) and self.right:
+            yield from self.right.traverse()
+
     def sum(self) -> Num:
         s = 0
 
@@ -98,11 +105,25 @@ class Tree:
         for v in self.pre_order_g():
             yield mapper(v)
 
-    def contain(self, val: Num) -> bool:
+    def slow_contains(self, val: Num) -> bool:
         for v in self.pre_order_g():
             if v == val:
                 return True
         return False
+
+    def contains(self, val: Num) -> bool:
+        g: Generator = self.traverse()
+        v = next(g)
+        try:
+            while True:
+                if v == val:
+                    return True
+                elif v > val:
+                    v = g.send(True)  # 遍历左子树
+                else:
+                    v = g.send(False)
+        except StopIteration:
+            return False
 
 
 if __name__ == '__main__':
@@ -136,6 +157,14 @@ if __name__ == '__main__':
     values = t.map(lambda x: 2 * x)
     for v in values:
         print(v)
-    print(t.contain(1))
-    print(t.contain(3))
-    print(t.contain(1.2))
+    print(t.slow_contains(1))
+    print(t.slow_contains(3))
+    print(t.slow_contains(1.2))
+
+    print(f'quick contain 1: {t.contains(1)}')
+    print(f'quick contain 0: {t.contains(0)}')
+    print(f'quick contain 3: {t.contains(3)}')
+    print(f'quick contain 3.3: {t.contains(3.3)}')
+    print(f'quick contain 2: {t.contains(2)}')
+    print(f'quick contain 1.2: {t.contains(1.2)}')
+    print(f'quick contain -1: {t.contains(-1)}')
