@@ -23,6 +23,7 @@ class LinkedList:
         
         head = self.head
         self.head = head.next
+        head.next = None
         return head
 
 class Node:
@@ -44,8 +45,8 @@ if __name__ == "__main__":
     ll.add(2)           # [10, 2]
     ll.add(-3)          # [10, 2, -3]
     ll.print()          # 10, 2 , -3
-    ll.pophead()        # [2, -3]
-    print()
+    x = ll.pophead()        # [2, -3]
+    print(f'x={x.v},next={x.next}')
     ll.print()
 
     # b.py

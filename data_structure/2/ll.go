@@ -7,29 +7,45 @@ type Node struct {
 	next *Node
 }
 
-func (n *Node) add(val int) {
-	if n.next == nil {
-		n.next = &Node{v: val}
+type LinkedList struct {
+	head *Node
+}
+
+
+
+func (l *LinkedList) add(val int) {
+	if l.head == nil {
+		l.head = &Node{v: val}
 		return
 	}
-	cur := n.next
+	cur := l.head
 	for cur.next != nil {
 		cur = cur.next
 	}	
 	cur.next = &Node{v: val}
 }
 
-func (n *Node) print() {
-	for cur := n; cur != nil; cur = cur.next {
+func (l *LinkedList) print() {
+	for cur := l.head; cur != nil; cur = cur.next {
 		fmt.Println(cur.v)
 	}
 }
 
+func (l *LinkedList) popHead() *Node {
+	n := l.head
+	l.head = n.next
+	n.next = nil
+	return n
+}
 
 func main() {
-	n := Node{v: 10}
-	n.add(2)
-	n.add(3)
-	n.add(4)
-	n.print()
+	l := LinkedList{head: nil}
+	l.add(-2)
+	l.add(5)
+	l.add(3)
+	l.add(4)
+	l.print()
+	n := l.popHead()
+	fmt.Printf("head val is %d\n", n.v)
+	l.print()
 }
