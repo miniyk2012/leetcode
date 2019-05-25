@@ -11,11 +11,10 @@ class KthLargest:
     def add(self, val: int) -> int:
         if len(self.q) < self.k:
             self.q.append(val)
-            self.q.sort(reverse=True)
         elif val > self.q[-1]:
             self.q.pop()
             self.q.append(val)
-            self.q.sort(reverse=True)
+        self.q.sort(reverse=True)
         return self.q[-1]
 
 
