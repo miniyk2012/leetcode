@@ -45,3 +45,4 @@ if __name__ == '__main__':
     param_2 = obj.add(1)
     print(param_1)
     print(param_2)
+
