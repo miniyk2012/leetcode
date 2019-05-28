@@ -15,7 +15,7 @@ class Solution:
         return head
 
     def insert_ahead(self, head, cur, pre) -> Tuple[ListNode, ListNode]:
-        """将cur插入到正确的位置上, 返回新的head"""
+        """将cur插入到正确的位置上, 返回新的head和新的pre"""
         visit, visit.next = self, head
         if cur.val < head.val:
             new_head = cur
