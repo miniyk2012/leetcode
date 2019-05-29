@@ -6,3 +6,6 @@
 2. LinkedList
     必做：237， 206， 876
     选做：148，147
+
+3. Recursion
+    # Reduction 归纳法的编程实现
