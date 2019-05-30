@@ -59,3 +59,7 @@ if __name__ == "__main__":
     ll.print()  # 10, 2 , -3
     print()
     count_recursion(4)
+
+"""
+python 中 deque is a doubly linked list while List is just an array.
+"""
