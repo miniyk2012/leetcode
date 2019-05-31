@@ -21,6 +21,8 @@ class LinkedList:
         head.next = None
         return head
 
+    def first(self, n):
+        yield from self.head.first(n)
 
 class Node:
     def __init__(self, v):
@@ -36,6 +38,11 @@ class Node:
         if self.next is not None:
             return self.next.add(v)
         self.next = Node(v)
+
+    def first(self, n):
+        yield self.v
+        if self.next and n>1:
+            yield from self.next.first(n-1)
 
 
 def run():
@@ -59,6 +66,9 @@ if __name__ == "__main__":
     ll.print()  # 10, 2 , -3
     print()
     count_recursion(4)
+    print('yield..')
+    for x in ll.first(3):
+        print(x)
 
 """
 python 中 deque is a doubly linked list while List is just an array.
