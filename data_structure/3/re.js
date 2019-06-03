@@ -65,6 +65,13 @@ function LinkedList() {
             // 返回起始的n个元素
             if (this.head)
                 return this.head.first(n)
+        },
+        sortedAdd: function(v) {
+            if (!this.head) {
+                this.head = Node(v)
+                return
+            }
+            this.head = this.head.sortedAdd(v)
         }
     }
 }
@@ -83,6 +90,21 @@ function Node(v) {
                 return ret
             }
             return ret
+        },
+        sortedAdd: function(v) {
+            if ( this.v >= v ) {
+                let n = Node(v)
+                n.next = this
+                return n
+            } else if ( !this.next || v < this.next.v ) {
+                let n = Node(v)
+                let tmp = this.next
+                this.next = n
+                n.next = tmp
+                return this
+            } else {
+                return this.next.sortedAdd(v)
+            }
         }
     }
 }
@@ -116,4 +138,15 @@ console.log('--', a)
 l.add(a)
 r = l.first(3)
 console.log(r)
+
+console.log('sortAdd')
+
+let nl = LinkedList()
+nl.sortedAdd(5)
+nl.sortedAdd(10)
+nl.sortedAdd(3)
+nl.sortedAdd(2)
+
+nr = nl.first(3)
+console.log(nr)
 // Controller
