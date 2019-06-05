@@ -29,13 +29,11 @@ class Solution:
         return self.a_sum
 
     def visit2(self, node: TreeNode) -> None:
-        if node is None:
-            return
         if self.L <= node.val <= self.R:
             self.a_sum += node.val
-        if node.val > self.L:
+        if node.val > self.L and node.left:
             self.visit2(node.left)
-        if node.val < self.R:
+        if node.val < self.R and node.right:
             self.visit2(node.right)
 
     def rangeSumBST3(self, root: TreeNode, L: int, R: int) -> int:

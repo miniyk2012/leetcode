@@ -9,3 +9,19 @@
 
 3. Recursion
     # Reduction 归纳法的编程实现
+    必做：938
+    选做：894
+    此外请用递归实现以下接口：
+    interface LinkedList:
+        push_head(node)
+        push_tail(node)
+        push_sorted(node)
+        push_index(node, i)
+        pop_head() -> node
+        pop_tail() -> node
+        pop_index(i) -> node
+
+4. stack和queue
+    stack.py
+    stack.js
+        实现计算功能
