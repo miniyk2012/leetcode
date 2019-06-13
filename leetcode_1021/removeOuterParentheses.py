@@ -16,6 +16,7 @@ class Solution:
 
         return ''.join(parentheses_list)
 
+
 if __name__ == '__main__':
     s = Solution()
     t = "(()())(())"
