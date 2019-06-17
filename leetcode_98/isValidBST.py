@@ -60,7 +60,7 @@ class Solution:
         return self.helper(root)
 
     def helper(self, node: TreeNode):
-        """对树做中序遍历，如果发现不是递增的就返回False， 遍历完都递增返回True
+        """对树做中序遍历，如果发现不是递增的就返回False，遍历完都递增返回True
         遍历完时self.prev保存最后遍历到的元素"""
         if node is None:
             return True
