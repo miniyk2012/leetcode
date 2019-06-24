@@ -9,6 +9,7 @@ class KthLargest:
         self.q = sorted(nums, reverse=True)[:k]
 
     def add(self, val: int) -> int:
+        """只存储k个数，加入进来的时候做个排序"""
         if len(self.q) < self.k:
             self.q.append(val)
         elif val > self.q[-1]:
