@@ -1,7 +1,7 @@
 def consumer():
     status = True
     while True:
-        n = yield status
+        n = yield status  #  先yield把status返回给producer后会卡住，直到接收到send的值赋给n再往下跑
         print("我拿到了{}!".format(n))
         if n == 3:
             status = False
@@ -21,7 +21,7 @@ async def async_function():
 
 if __name__ == '__main__':
     c = consumer()
-    c.send(None)
+    print(c.send(None))
     p = producer(c)
     for status in p:
         print(status)
@@ -34,3 +34,11 @@ if __name__ == '__main__':
         async_function().send(None)
     except StopIteration as e:
         print(e.value)
+
+
+def gen_fn():
+    result = yield 1
+    print('result of yield: {}'.format(result))
+    result2 = yield 2
+    print('result of 2nd yield: {}'.format(result2))
+    return 'done'
