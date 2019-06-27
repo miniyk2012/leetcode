@@ -101,7 +101,7 @@ def fetch_urls():
     # 异步爬取数百个网站
     fetchers = [Fetcher(f'/{num}/') for num in range(10, 500)]
     for fetcher in fetchers:
-        Task(fetcher.fetch())
+        Task(fetcher.fetch())  # 每个Task负责爬一个网址
 
 
 def loop():
