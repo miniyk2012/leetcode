@@ -29,5 +29,5 @@
         想实现一个连接池，但是我没看懂视频
     作业：
         LinkedList实现queue和stack
-        stack: 1021, 921, 682
+        stack: 1021, 021, 682
         queue: 933
