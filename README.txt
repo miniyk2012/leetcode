@@ -28,6 +28,11 @@
     queue.go  
         想实现一个连接池，但是我没看懂视频
     作业：
-        LinkedList实现queue和stack
-        stack: 1021, 921, 682
-        queue: 933
+        LinkedList实现queue和stack done
+        stack: 1021, 921, 682 todo
+        queue: 933 todo
+
+5. hash表
+    js和python的hash应用
+    课堂习题：
+        771, 149, 961, 451等
