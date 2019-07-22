@@ -13,7 +13,9 @@ leetcode刷题
     122, 111, 104, 22
 
 7月20日
-    1114 concurreny类型题, todo
+    1114 concurreny类型题, done
+    1115 交替打印foobar, done
+    1116 打印零与奇偶数, done
     739 todo
 
 
