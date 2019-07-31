@@ -3,7 +3,7 @@ import numpy as np
 from typing import Callable
 from utils import assert_msg
 from pandas import DataFrame as _Data
-from exchange import ExchangeAPI as _broker
+from exchange import ExchangeAPI as _Broker
 
 
 class Strategy(metaclass=abc.ABCMeta):
