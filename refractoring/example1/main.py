@@ -18,7 +18,6 @@ def test():
     customer.add_rental(n_rental)
 
     result = customer.statement()
-
     assert result == """Rental Record for CUSTOMER
 	CHILDRENS	27.0
 	REGULAR	29.0
