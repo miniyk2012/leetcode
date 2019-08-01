@@ -100,15 +100,13 @@ class BaseLFUCache:
             return
 
         # if node not in cache
-        node = Node(key, value, self._tick)
         if len(self._m) == self._capacity:
             lfu_node: Node = self._t.pop_first()
             self._m.pop(lfu_node.key)
-            self._t.add(node)
-            self._m[key] = node
-        else:
-            self._m[key] = node
-            self._t.add(node)
+
+        node = Node(key, value, self._tick)
+        self._m[key] = node
+        self._t.add(node)
 
     def touch(self, node: Node):
         """把该node的频率做更新"""
