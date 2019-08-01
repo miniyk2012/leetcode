@@ -3,6 +3,7 @@ from typing import List
 from rental import Rental
 from statement import TextStatment
 
+
 class Customer:
     """ 顾客类，存放每个顾客租赁信息的列表
 

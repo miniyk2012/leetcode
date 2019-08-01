@@ -1,7 +1,7 @@
 import abc
 
 
-class Statement(abc.ABCMeta):
+class Statement(metaclass=abc.ABCMeta):
     @classmethod
     def value(cls, customer):
         result = cls.header_string(customer)
