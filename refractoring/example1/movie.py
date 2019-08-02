@@ -2,15 +2,25 @@ import abc
 from numbers import Number
 
 
-class PriceState(metaclass=abc.ABCMeta):
-    pass
+class Price(metaclass=abc.ABCMeta):
+    @property
+    @abc.abstractmethod
+    def price_code(self):
+        pass
 
     @abc.abstractmethod
     def get_charge(self, rented_days: Number):
         pass
 
+    def get_frequent_point(self, rented_days):
+        return 1
 
-class RegularPriceState(PriceState):
+
+class RegularPrice(Price):
+
+    @property
+    def price_code(self):
+        return Movie.REGULAR
 
     def get_charge(self, rented_days):
         result = 2
@@ -19,7 +29,11 @@ class RegularPriceState(PriceState):
         return result
 
 
-class ChildrensPriceState(PriceState):
+class ChildrensPrice(Price):
+
+    @property
+    def price_code(self):
+        return Movie.CHILDRENS
 
     def get_charge(self, rented_days):
         result = 1.5
@@ -29,23 +43,20 @@ class ChildrensPriceState(PriceState):
         return result
 
 
-class FrequentPointState:
-    def get_frequent_point(self, rented_days):
-        return 1
+class NewReleasePrice(Price):
 
+    @property
+    def price_code(self):
+        return Movie.NEW_REALEASE
 
-class NewReleaseFrequentPointState(FrequentPointState):
+    def get_charge(self, rented_days: Number):
+        return rented_days * 3
+
     def get_frequent_point(self, rented_days):
         # 新片租赁两天以上会有额外的积分奖励
         if rented_days > 1:
             return 2
         return 1
-
-
-class NewReleasePriceState(PriceState):
-
-    def get_charge(self, rented_days: Number):
-        return rented_days * 3
 
 
 class Movie:
@@ -64,24 +75,21 @@ class Movie:
         self.set_price_code(price_code)
 
     def get_price_code(self):
-        return self.price_code
+        return self.price.price_code
 
     def set_price_code(self, arg):
-        self.price_code = arg
-        self.point_state = FrequentPointState()
         if arg == Movie.REGULAR:
-            self.price_state = RegularPriceState()
+            self.price = RegularPrice()
         elif arg == Movie.CHILDRENS:
-            self.price_state = ChildrensPriceState()
+            self.price = ChildrensPrice()
         elif arg == Movie.NEW_REALEASE:
-            self.price_state = NewReleasePriceState()
-            self.point_state = NewReleaseFrequentPointState()
+            self.price = NewReleasePrice()
 
     def get_title(self):
         return self.title
 
     def get_charge(self, rented_days):
-        return self.price_state.get_charge(rented_days)
+        return self.price.get_charge(rented_days)
 
     def get_frequent_point(self, rented_days):
-        return self.point_state.get_frequent_point(rented_days)
+        return self.price.get_frequent_point(rented_days)
