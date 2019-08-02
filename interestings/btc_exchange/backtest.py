@@ -21,8 +21,8 @@ class Backtest:
 
     def __init__(self,
                  data: pd.DataFrame,
-                 strategy_type: Strategy,
-                 broker_type: ExchangeAPI,
+                 strategy_type: type,
+                 broker_type: type,
                  cash: float = 10000,
                  commission: float = .0):
         """
