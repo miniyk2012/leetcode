@@ -1,136 +1,86 @@
 from __future__ import annotations
 
-import abc
-import heapq
-from functools import total_ordering
-
-from sortedcontainers import SortedSet
+from collections import defaultdict, deque
+from typing import Dict
 
 
-@total_ordering
 class Node:
-    def __init__(self, key, value, tick):
+    def __init__(self, key: int, value: int):
         self.key = key
         self.value = value
         self.freq = 1
-        self.tick = tick  # 最晚访问时间点
-
-    def __lt__(self, other: Node):
-        """用于最小堆比较，小的就是最少访问的，满时优先踢出"""
-        if self.freq < other.freq:
-            return True
-        if self.freq == other.freq:
-            if self.tick < other.tick:
-                return True
-        return False
 
 
-class OrderContainer(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def remove(self, node: Node):
-        pass
+class LFUCache:
 
-    @abc.abstractmethod
-    def add(self, node: Node):
-        pass
-
-    @abc.abstractmethod
-    def pop_first(self):
-        pass
-
-
-class WrapSortedSet(OrderContainer):
-    def __init__(self):
-        self.container: SortedSet = SortedSet([])
-
-    def add(self, node):
-        self.container.add(node)
-
-    def pop_first(self):
-        return self.container.pop(0)
-
-    def remove(self, node: Node):
-        self.container.remove(node)
-
-
-class HeapSortedSet(OrderContainer):
-    def __init__(self):
-        self.container = []
-
-    def remove(self, node: Node):
-        self.container.remove(node)
-        heapq.heapify(self.container)  # 删除元素后会破坏最小堆，因此要重新变成最小堆！！
-
-    def add(self, node: Node):
-        heapq.heappush(self.container, node)
-
-    def pop_first(self):
-        return heapq.heappop(self.container)
-
-
-class BaseLFUCache:
     def __init__(self, capacity: int):
-        self._m: dict = {}
-        self._tick = 0
+        self._m: Dict = {}
+        self.frequency_table: Dict[int, deque] = defaultdict(deque)
         self._capacity = capacity
+        self.min_freq = 0
 
     def get(self, key: int) -> int:
-        self._tick += 1
-
         if key in self._m:
             # if key in cache
             node: Node = self._m[key]
-            self.touch(node)
+            self._touch(node)
             return node.value
 
-        # if node not in cache
+        # if key not in cache
         return -1
 
     def put(self, key: int, value: int) -> None:
-        self._tick += 1
-
         if self._capacity == 0:
             return
 
         if key in self._m:
             # if key in cache
-            node: Node = self._m[key]
+            node = self._m[key]
             node.value = value
-            self.touch(node)
+            self._touch(node)
             return
 
         # if key not in cache
         if len(self._m) == self._capacity:
-            lfu_node: Node = self._t.pop_first()
-            self._m.pop(lfu_node.key)
+            # 删除最少频率最早使用
+            node = self.frequency_table[self.min_freq].pop()
+            if len(self.frequency_table[self.min_freq]) == 0:
+                self.frequency_table.pop(self.min_freq)
+            self._m.pop(node.key)
 
-        node = Node(key, value, self._tick)
+        node = Node(key, value)
         self._m[key] = node
-        self._t.add(node)
+        self.frequency_table[1].appendleft(node)
+        self.min_freq = 1
 
-    def touch(self, node: Node):
-        """把该node的频率做更新"""
-        self._t.remove(node)
+    def _touch(self, node: Node):
+        """更新频率"""
+        old_freq = node.freq
         node.freq += 1
-        node.tick = self._tick
-        self._t.add(node)
+        self.frequency_table[old_freq].remove(node)
+        self.frequency_table[node.freq].insert(0, node)
+        if len(self.frequency_table[old_freq]) == 0:
+            self.frequency_table.pop(old_freq)
+            if old_freq == self.min_freq:
+                self.min_freq = node.freq
 
 
-class SortedSetLFUCache(BaseLFUCache):
-
-    def __init__(self, capacity: int):
-        super().__init__(capacity)
-        self._t: OrderContainer = WrapSortedSet()
-
-
-class HeapLFUCache(BaseLFUCache):
-    def __init__(self, capacity: int):
-        super().__init__(capacity)
-        self._t: OrderContainer = HeapSortedSet()
+def execute_commands_check_result(commands, params, expecteds):
+    cache = globals()[commands[0]](params[0][0])
+    for idx, command in enumerate(commands[1:], 1):
+        param = params[idx]
+        expected = expecteds[idx]
+        if command == 'put':
+            cache.put(*param)
+        elif command == 'get':
+            try:
+                assert cache.get(*param) == expected
+            except AssertionError:
+                print(command, param, cache.get(*param), expected)
 
 
 def test1():
-    cache = SortedSetLFUCache(2)
+    cache = LFUCache(2)
     cache.put(1, 1)
     cache.put(2, 2)
     assert cache.get(1) == 1  # 返回 1
@@ -143,7 +93,7 @@ def test1():
     assert cache.get(4) == 4  # 返回 4
 
 
-def test2(clz):
+def test2():
     commands = ["LFUCache", "put", "put", "put", "put", "put", "get", "put", "get", "get", "put", "get", "put", "put",
                 "put", "get", "put", "get", "get", "get", "get", "put", "put", "get", "get", "get", "put", "put", "get",
                 "put", "get", "put", "get", "get", "get", "put", "put", "put", "get", "put", "get", "get", "put", "put",
@@ -174,20 +124,26 @@ def test2(clz):
                  None, 17, -1, 18, None, None, None, -1, None, None, None, 20, None, None, None, 29, 18, 18, None, None,
                  None, None, 20, None, None, None, None, None, None, None]
 
-    cache = clz(params[0][0])
-    for idx, command in enumerate(commands[1:], 1):
-        param = params[idx]
-        expected = expecteds[idx]
-        if command == 'put':
-            cache.put(*param)
-        elif command == 'get':
-            try:
-                assert cache.get(*param) == expected
-            except AssertionError:
-                print(command, param, cache.get(*param), expected)
+    execute_commands_check_result(commands, params, expecteds)
+
+
+def test3():
+    commands = ["LFUCache", "put", "get"]
+    params = [[1], [0, 0], [0]]
+    expected = [None, None, 0]
+    execute_commands_check_result(commands, params, expected)
+
+
+def test4():
+    commands = ["LFUCache", "put", "get", "put", "get", "get"]
+    params = [[1], [2, 1], [2], [3, 2], [2], [3]]
+    expected = [None, None, 1, None, -1, 2]
+
+    execute_commands_check_result(commands, params, expected)
 
 
 if __name__ == '__main__':
     test1()
-    test2(SortedSetLFUCache)
-    test2(HeapLFUCache)
+    test2()
+    test3()
+    test4()
