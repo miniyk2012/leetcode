@@ -58,7 +58,7 @@ class LFUCache:
         old_freq = node.freq
         node.freq += 1
         self.frequency_table[old_freq].remove(node)
-        self.frequency_table[node.freq].insert(0, node)
+        self.frequency_table[node.freq].appendleft(node)
         if len(self.frequency_table[old_freq]) == 0:
             self.frequency_table.pop(old_freq)
             if old_freq == self.min_freq:
