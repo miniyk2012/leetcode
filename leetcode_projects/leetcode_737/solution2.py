@@ -32,14 +32,16 @@ class Solution:
     def _do_cluster(self):
         def _dfs(node: str) -> None:
             # 将node所在的联通集内的所有单词记录为同一组
-            if node in self._clusters:
-                return
             self._clusters[node] = _id
             for nxt in self._graph[node]:
+                if nxt in self._clusters:
+                    continue
                 _dfs(nxt)
 
         _id = 0
         for word in self._graph:
+            if word in self._clusters:
+                continue
             _dfs(word)
             _id += 1
 
