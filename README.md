@@ -19,8 +19,13 @@ leetcode刷题
     739 todo
 
 8月1日
-    460 实现LFU pip install sortedcontainers todo, 因为目前值做了慢速版本，LTE
-    208 实现字典树
+    460 实现LFU pip install sortedcontainers done
+    208 实现字典树 done
+8月6日
+    734 相似句子判断 map与set应用 done
+    737 具有传递性的句子判断 graph实现，或并查集实现 todo
+    357 todo
+
 
 
 
