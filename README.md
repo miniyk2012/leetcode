@@ -28,7 +28,7 @@ leetcode刷题
     684 冗余连接 done
 
 8月8日
-    547 朋友圈 todo
+    547 朋友圈 done
     357 todo
 
 
