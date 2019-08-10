@@ -1,8 +1,6 @@
-# leetcode
+# leetcode刷题
 
 # ![version](https://img.shields.io/badge/python-3.7-blue)
-
-leetcode刷题
 
 6月13日
 * 1021, 921, 682(undo)
