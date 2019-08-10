@@ -1,5 +1,9 @@
 # leetcode
+
+# ![version](https://img.shields.io/badge/python-3.7-blue)
+
 leetcode刷题
+
 6月13日
     1021, 921, 682(undo)
 
@@ -16,7 +20,6 @@ leetcode刷题
     1114 concurreny类型题, done
     1115 交替打印foobar, done
     1116 打印零与奇偶数, done
-    739 todo
 
 8月1日
     460 实现LFU pip install sortedcontainers done
@@ -29,10 +32,15 @@ leetcode刷题
 
 8月8日
     547 朋友圈 done
-    357 todo
+
+8月9日
     207,210 拓扑排序 todo
+    357 todo
     70 动态规划 todo
     46 回溯算法 todo
+    739 todo
+    685 有向图冗余连接
+
 
 
 
