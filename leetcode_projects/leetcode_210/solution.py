@@ -7,6 +7,7 @@ class Solution:
     VISITED = 2
 
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List:
+        """DFS解法，是标准和简洁的做法"""
         self.ordered_courses = []
         self.couse_table = [[] for _ in range(numCourses)]
         self.course_state = [Solution.UNKNOWN] * numCourses
