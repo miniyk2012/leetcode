@@ -38,7 +38,10 @@
 8月12日
   - 210 拓扑排序的一种自然解法
 
+8月14日
+    - Fenwick Tree / Binary Indexed Tree 307 done
 待续
+  - 315 Fenwick Tree
   - 357 todo
   - 70 动态规划 todo
   - 46 回溯算法 todo

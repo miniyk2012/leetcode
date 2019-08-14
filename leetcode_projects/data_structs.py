@@ -33,3 +33,27 @@ class UnionFindSet:
         else:
             self._parents[root_u] = root_v
             self._ranks[root_v] = rank_v + 1
+
+
+class FenwickTree:
+    """该数据结构用来计算数组一个连续区间数字之和，且数组中的数字可变。
+    也叫Binary Indexed Tree
+    """
+
+    def __init__(self, n):
+        """从下标1开始, 下标0无用"""
+        self._sum = [0 for _ in range(n + 1)]
+
+    def query(self, i):
+        """查询得到第1个元素~第i个元素的和"""
+        s = 0
+        while i > 0:
+            s += self._sum[i]
+            i -= i & (-i)
+        return s
+
+    def update(self, i, delta):
+        """这个update更新的是与旧值相比的变化值，当心"""
+        while i < len(self._sum):
+            self._sum[i] += delta
+            i += i & (-i)
