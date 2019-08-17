@@ -42,7 +42,8 @@
     - Fenwick Tree / Binary Indexed Tree 307 done
 
 8月17日
-    - 895 最大频率栈
+    - 895 最大频率栈 done
+    - 146 LRU done
 
 待续
   - 315 Fenwick Tree

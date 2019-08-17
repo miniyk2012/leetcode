@@ -19,6 +19,8 @@ class FreqStack:
     def pop(self) -> int:
         val = self._freq_stack.get(self._max_freq).pop()
         self._val_freq[val] -= 1
+        if self._val_freq[val] == 0:
+            self._val_freq.pop(val)
         if len(self._freq_stack.get(self._max_freq)) == 0:
             self._freq_stack.pop(self._max_freq)
             self._max_freq -= 1
@@ -31,6 +33,9 @@ def execute(commands, params, expecteds):
         actual = attrgetter(command)(stack)(*param)
         print(f'{command}{param and param[0]}={actual} ?= {expected}')
         assert actual == expected
+
+    print(stack._freq_stack)
+    print(stack._val_freq)
 
 
 def test1():
