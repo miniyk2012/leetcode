@@ -47,6 +47,10 @@
     - 62、63、64 二维DP done
     - 198 打家劫舍 一维DP, 还可以降维
 
+8月18日
+    - 746 Min Cost Climbing Stairs done
+    - 53 Maximum Subarray done 需要维护2个状态：dp_sofar和dp_ending_here
+
 待续
   - DP 花花酱SP9
   - 315 Fenwick Tree
