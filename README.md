@@ -53,6 +53,10 @@
 
 8月19日
     - 39 combination sum done
+
+8月20日
+    - 278 First Bad Version
+    - 69 x 的平方根
 待续
   - DP 花花酱SP9
   - 315 Fenwick Tree
