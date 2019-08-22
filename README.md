@@ -39,24 +39,30 @@
   - 210 拓扑排序的一种自然解法
 
 8月14日
-    - Fenwick Tree / Binary Indexed Tree 307 done
+  - Fenwick Tree / Binary Indexed Tree 307 done
 
 8月17日
-    - 895 最大频率栈 done
-    - 146 LRU done
-    - 62、63、64 二维DP done
-    - 198 打家劫舍 一维DP, 还可以降维
+  - 895 最大频率栈 done
+  - 146 LRU done
+  - 62、63、64 二维DP done
+  - 198 打家劫舍 一维DP, 还可以降维
 
 8月18日
-    - 746 Min Cost Climbing Stairs done
-    - 53 Maximum Subarray done 需要维护2个状态：dp_sofar和dp_ending_here
+  - 746 Min Cost Climbing Stairs done
+  - 53 Maximum Subarray done 需要维护2个状态：dp_sofar和dp_ending_here
 
 8月19日
     - 39 combination sum done
 
 8月20日
-    - 278 First Bad Version
-    - 69 x 的平方根
+  - 278 First Bad Version
+  - 69 x 的平方根
+
+8月21日
+  - 46 Permutations I (每个数都不相同), 使用了回溯
+  - 47 PermuteUnique II (有数字相同), 很明确的使用了回溯
+  
+ 
 待续
   - DP 花花酱SP9
   - 315 Fenwick Tree
