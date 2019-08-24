@@ -3,7 +3,7 @@
 ## ![version](https://img.shields.io/badge/python-3.7-blue)
 
 6月13日
-  - 1021, 921, 682(undo)
+  - 1021, 921
 
 6月17日 刷题日，刷15题
   - 98, 236, 235, 15, 703
@@ -52,7 +52,7 @@
   - 53 Maximum Subarray done 需要维护2个状态：dp_sofar和dp_ending_here
 
 8月19日
-    - 39 combination sum done
+  - 39 combination sum done
 
 8月20日
   - 278 First Bad Version
@@ -65,8 +65,10 @@
 8月23日
   - 46, 47回溯问题和剪枝的深入思考
  
+8月24日
+  - 682
+
 待续
-  - DP 花花酱SP9
   - 315 Fenwick Tree
   - 357 todo
   - 70 动态规划 todo
