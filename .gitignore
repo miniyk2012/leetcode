@@ -148,3 +148,6 @@ venv.bak/
 /interestings/*.jpg
 /interestings/*.png
 BTCUSD_GEMINI.csv
+
+# vscode
+.vscode/

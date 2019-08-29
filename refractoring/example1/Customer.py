@@ -14,7 +14,7 @@ class Customer:
         self.name = name
         self.rentals: List[Rental] = []
 
-    def add_rental(self, rental):
+    def add_rental(self, rental: Rental):
         """ 增加一条租赁信息
 
         :param rental: object, Rental类

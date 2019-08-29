@@ -1,6 +1,5 @@
 from movie import Movie
 
-
 class Rental:
     """ 租赁类，表示某个顾客租了一部影片
 
@@ -8,7 +7,7 @@ class Rental:
     :days_rented: int, 租期
     """
 
-    def __init__(self, movie, days_rented):
+    def __init__(self, movie: Movie, days_rented):
         self.movie = movie
         self.days_rented = days_rented
 
