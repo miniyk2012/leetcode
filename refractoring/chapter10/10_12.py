@@ -36,6 +36,11 @@ class Employee(metaclass=abc.ABCMeta):
     def describe(self):
         pass
 
+    @property
+    @abc.abstractmethod
+    def occupation_type(self):
+        pass
+
 
 class Engineer(Employee):
     def describe(self):
