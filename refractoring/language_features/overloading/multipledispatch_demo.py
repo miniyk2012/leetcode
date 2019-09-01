@@ -14,11 +14,11 @@ class A:
 
     @dispatch(int)
     def foo(self, a):
-        print(f'int a')
+        print(f'int {a}')
 
     @dispatch(str)
     def foo(self, a):
-        print(f'str a')
+        print(f'str {a}')
 
     @dispatch(str, int)
     def foo(self, a, b):
@@ -37,6 +37,7 @@ if __name__ == '__main__':
     a.foo("x")
     a.foo('a', 3)
     a.foo(b)
+    print(a.foo.funcs)
 
     print(a)
     print(b)
