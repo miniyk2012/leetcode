@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from rbnics_utils_decorators_dispatch import dispatch  # 使用补丁来支持lambda功能 https://github.com/mrocklin/multipledispatch/issues/78
-# Python interpreter fails on @dispatch(F) because F is not fully defined yet
 
 
 class A:
@@ -25,6 +24,7 @@ class A:
     def foo(self, a, b):
         print(f'str {a} int {b}')
 
+    # # Python interpreter fails on @dispatch(F) because F is not fully defined yet, 因此使用lambda来解决该问题
     @dispatch(lambda cls: cls)
     def foo(self, other):
         print(f'other {other}')
