@@ -1,8 +1,11 @@
+from __future__ import annotations
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
-        self.left = None
-        self.right = None
+        self.left: TreeNode = None
+        self.right: TreeNode = None
 
 
 class ListNode:
