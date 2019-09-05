@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import List
+
 
 class TreeNode:
     def __init__(self, x):
@@ -76,3 +78,23 @@ def test_construct_tree():
     print(new_l)
     new_l2 = def_visit_tree2(root)
     print(new_l2)
+
+
+def construct_list(l: List):
+    ret = cur = None
+    for val in l:
+        node = ListNode(val)
+        if ret is None:
+            ret = cur = node
+        else:
+            cur.next = node
+            cur = cur.next
+    return ret
+
+def destruct_listnode(l: ListNode):
+    ret = []
+    cur = l
+    while cur:
+        ret.append(cur.val)
+        cur = cur.next
+    return ret
