@@ -49,7 +49,7 @@ class Customer(Nullable):
         self._payment_history = value
 
 
-class NullCustomer(Customer, Nullable):
+class NullCustomer(Customer):
     def __init__(self):
         pass
 
