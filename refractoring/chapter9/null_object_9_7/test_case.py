@@ -1,10 +1,10 @@
 from pytest import fixture
 
-from refractoring.chapter9.null_object_9_7_after import (
+from refractoring.chapter9.null_object_9_7.null_object_after import (
     Site as SiteAfter,
     Customer as CustomerAfter,
     PaymentHistory as PaymentHistoryAfter)
-from refractoring.chapter9.null_object_9_7_before import (
+from refractoring.chapter9.null_object_9_7.null_object_before import (
     Site as SiteBefore,
     Customer as CustomerBefore,
     PaymentHistory as PaymentHistoryBefore)
@@ -80,6 +80,7 @@ def get_information_before(site):
 
 
 def get_information_after(site):
+    """客户用起来方便多了"""
     c = site.customer
     name = c.name
     plan = c.plan
