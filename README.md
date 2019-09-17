@@ -85,6 +85,12 @@
 9月10日
   - 901 Online Stock Span 单调栈
 
+9月17日 题外话
+  -- import模块的顺序, 是否会重复导入以及循环导入问题的理解
+    * interestings/cirular_import
+    * interestings/modules_demo
+    * python3_notebook/import_modules: 尤其是理解了这个的输出: `python b.py`, 那什么都懂了(我已经懂了)
+
 
 待续
     - 410 Split Array Largest Sum
