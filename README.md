@@ -91,9 +91,14 @@
     * interestings/modules_demo
     * python3_notebook/import_modules: 尤其是理解了这个的输出: `python b.py`, 那什么都懂了(我已经懂了)
 
+9月26日
+  - 410dfs遍历的实现
+
+9月27日
+  -- dfs实现叉乘: interestings/cross_product.py
 
 待续
-    - 410 Split Array Largest Sum
+  - 410 Split Array Largest Sum
   - 378 可以用二分查找, 但要求有很强的问题转化能力, 我想了个方案：从右往左一列一列填排名的方法，实现起来复杂，但很直接
   - 315 Fenwick Tree
   - 357 todo
