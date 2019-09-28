@@ -95,7 +95,7 @@
   - 410dfs遍历的实现
 
 9月27日
-  -- dfs实现叉乘: interestings/cross_product.py
+  - dfs实现叉乘: interestings/cross_product.py
 
 待续
   - 410 Split Array Largest Sum
