@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import readers
 
 
-def read_data(file_path, *args):
+def read_data(file_path: pathlib.Path, *args):
     """read data return a Pandas DataFrame"""
     file_format = file_path.suffix.lstrip(".")
     return readers.read(file_format, file_path, *args)
@@ -29,4 +29,5 @@ def main(file_path, delimiter):
 
 
 if __name__ == '__main__':
+    # python main.py iris.csv --delimiter ,
     main()
