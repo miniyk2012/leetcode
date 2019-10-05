@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import List, Callable, Optional
+from numbers import Real
 
 
 class UnionFindSet:
@@ -62,7 +63,7 @@ class FenwickTree:
 
 class SegmentTreeNode:
 
-    def __init__(self, start: int, end: int, val: int, left: SegmentTreeNode = None, right: SegmentTreeNode = None):
+    def __init__(self, start: int, end: int, val: Real, left: SegmentTreeNode = None, right: SegmentTreeNode = None):
         self.start = start
         self.end = end
         self.val = val
@@ -74,19 +75,19 @@ OptionalSegmentTreeNode = Optional[SegmentTreeNode]
 
 
 class SegmentTree:
-    def __init__(self, nums: List[int], metric: Callable[[int, int], int]):
+    def __init__(self, nums: List[Real], metric: Callable[[Real, Real], Real]):
         self._nums = nums
         self._metric = metric
         if nums:
             self._root = self._buildTree(0, len(nums) - 1)
 
-    def updateTree(self, index: int, val: int) -> None:
+    def updateTree(self, index: int, val: Real) -> None:
         self._updateTree(self._root, index, val)
 
-    def rangeQuery(self, i: int, j: int) -> int:
+    def rangeQuery(self, i: int, j: int) -> Real:
         return self._rangeQuery(self._root, i, j)
 
-    def _rangeQuery(self, node: OptionalSegmentTreeNode, i: int, j: int) -> int:
+    def _rangeQuery(self, node: OptionalSegmentTreeNode, i: int, j: int) -> Real:
         if node is None:
             raise RuntimeError("index outside array")
         if i == node.start and j == node.end:
@@ -107,7 +108,7 @@ class SegmentTree:
         right = self._buildTree(mid + 1, end)
         return SegmentTreeNode(start, end, self._metric(left.val, right.val), left, right)
 
-    def _updateTree(self, node: OptionalSegmentTreeNode, index: int, val: int) -> None:
+    def _updateTree(self, node: OptionalSegmentTreeNode, index: int, val: Real) -> None:
         if node is None:
             raise RuntimeError("index outside array")
         if index == node.start == node.end:
