@@ -97,9 +97,12 @@
 9月27日
   - dfs实现叉乘: interestings/cross_product.py
 
+10月5日
+  - segment Tree(线段树), 范围求值, LC307
+
 待续
   - 410 Split Array Largest Sum
-  - 378 可以用二分查找, 但要求有很强的问题转化能力, 我想了个方案：从右往左一列一列填排名的方法，实现起来复杂，但很直接
+  - 378 可以用二分查找, 但要求有很强的问题转化能力
   - 315 Fenwick Tree
   - 357 todo
   - 70 动态规划 todo

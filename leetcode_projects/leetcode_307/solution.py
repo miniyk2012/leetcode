@@ -27,5 +27,3 @@ def test():
     assert obj.sumRange(0, 2) == 8
 
 
-if __name__ == '__main__':
-    test()
