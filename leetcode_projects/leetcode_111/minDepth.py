@@ -1,5 +1,6 @@
-from leetcode_projects.tree import TreeNode, construct_tree
 from collections import deque
+
+from leetcode_projects.tree import TreeNode, construct_tree
 
 
 class Solution:
@@ -33,11 +34,13 @@ class Solution:
         level = 0
         while queue:
             level += 1
-            for _ in range(len(queue)):
+            q_len = len(queue)
+            # print(q_len)
+            for _ in range(q_len):  # 遍历完一层
                 top = queue.popleft()
                 if top.left is None and top.right is None:
-                    if self.min is None or self.min > level:
-                        self.min = level
+                    self.min = level  # 因为level是不断上升的, 因此头一个发现的叶子肯定是层数最低的
+                    return
                 if top.left:
                     queue.append(top.left)
                 if top.right:
@@ -45,8 +48,10 @@ class Solution:
 
 
 if __name__ == '__main__':
-    tree = construct_tree([3, 9, 20, None, None, 15, 7])
+    tree = construct_tree([3, 9, 20, None, None, 15, 7, 4, 5, 45, 12])
     s = Solution()
     assert s.minDepth2(tree) == 2
     tree = construct_tree([1, 2])
+    assert s.minDepth2(tree) == 2
+    tree = construct_tree([1, None, 2])
     assert s.minDepth2(tree) == 2
