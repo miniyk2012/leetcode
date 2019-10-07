@@ -9,6 +9,9 @@ class TreeNode:
         self.left: TreeNode = None
         self.right: TreeNode = None
 
+    def __repr__(self):
+        return str(self.val)
+
 
 class ListNode:
     def __init__(self, x):
@@ -90,6 +93,7 @@ def construct_list(l: List):
             cur.next = node
             cur = cur.next
     return ret
+
 
 def destruct_listnode(l: ListNode):
     ret = []
