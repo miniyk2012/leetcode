@@ -51,3 +51,12 @@ if __name__ == '__main__':
 
     with Connction() as conn, conn.get_cursor() as cursor:
         print("trans")
+
+    print()
+
+    generator = outer().func()
+    try:
+        print(next(generator))
+        print(next(generator))
+    except StopIteration:
+        pass
