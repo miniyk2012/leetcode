@@ -18,6 +18,9 @@ class ListNode:
         self.val = x
         self.next = None
 
+    def __repr__(self):
+        return str(self.val)
+
 
 LEFT = 'left'
 RIGHT = 'right'
@@ -39,7 +42,7 @@ def dfs_visit_tree(root: TreeNode):
     return l + left_l + right_l
 
 
-def def_visit_tree2(root):
+def dfs_visit_tree2(root):
     stack = [root]
     ret = []
     while True:
@@ -79,7 +82,7 @@ def test_construct_tree():
     root = construct_tree(l)
     new_l = dfs_visit_tree(root)
     print(new_l)
-    new_l2 = def_visit_tree2(root)
+    new_l2 = dfs_visit_tree2(root)
     print(new_l2)
 
 
