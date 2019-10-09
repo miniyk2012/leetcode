@@ -31,32 +31,45 @@ class Cursor:
 @contextmanager
 def outer():
     conn = Connction()
-    yield conn
-    conn.close()
+    try:
+        yield conn
+    finally:
+        conn.close()
 
 
 @contextmanager
 def inner():
     with outer() as conn:
         cursor = conn.get_cursor()
-        yield cursor
-        cursor.close()
+        try:
+            yield cursor
+        finally:
+            cursor.close()
+
+
 
 
 if __name__ == '__main__':
     with inner() as cursor:
         print("trans")
 
-    print()
+    print("*" * 100)
 
     with Connction() as conn, conn.get_cursor() as cursor:
         print("trans")
 
-    print()
+    print("*" * 100)
 
-    generator = outer().func()
+    generator = inner().func()
     try:
-        print(next(generator))
-        print(next(generator))
+        cursor = next(generator)
+        print(cursor)
+        next(generator)
     except StopIteration:
         pass
+
+    print("*" * 100)
+    with inner() as cursor:
+        print("befor trnas")
+        raise RuntimeError("ha")
+        print("trans")
