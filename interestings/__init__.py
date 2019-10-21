@@ -27,8 +27,7 @@ def composed():
     x = yield next(it)
     while True:
         try:
-            r = it.send(x)
-            yield r
+            yield it.send(x)
         except StopIteration as e:
             print(e.value)
             break
