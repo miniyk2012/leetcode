@@ -89,7 +89,11 @@
   - import模块的顺序, 是否会重复导入以及循环导入问题的理解
     * interestings/cirular_import
     * interestings/modules_demo
-    * python3_notebook/import_modules: 尤其是理解了这个的输出: `python b.py`, 那什么都懂了(我已经懂了)
+    * python3_notebook/import_modules
+        python a.py
+        python b.py
+        python cc.py
+        python y.py
 
 9月26日
   - 410dfs遍历的实现
