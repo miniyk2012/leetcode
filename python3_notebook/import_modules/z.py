@@ -1,0 +1,3 @@
+import x
+
+print(x)
