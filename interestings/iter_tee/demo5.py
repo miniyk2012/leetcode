@@ -1,5 +1,5 @@
-import threading
 import itertools
+import threading
 
 
 def generator():
