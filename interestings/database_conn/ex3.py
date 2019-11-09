@@ -1,10 +1,8 @@
-import MySQLdb
-import time
 import threading
-import os
-from DBUtils.PersistentDB import PersistentDB
+import time
+
+import MySQLdb
 from DBUtils.PooledDB import PooledDB
-import sys
 
 db_config = {
     'host': 'localhost',
@@ -29,7 +27,7 @@ def test_with_pooleddb_conn():
     def new_conn(i):
         conn = db_pool.connection()
         print(f'{i} begin connecting to mysql')
-        time.sleep(10)
+        time.sleep(100)
         print(f'after get connection, ${i} sleep 100s')
         conn.close()
     threads = []
@@ -40,7 +38,7 @@ def test_with_pooleddb_conn():
     for t in threads:
         t.join()
     print('all conn close')
-    time.sleep(50)
+    time.sleep(100)
 
     print('program exit')
 
