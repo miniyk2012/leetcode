@@ -9,6 +9,7 @@ def generator():
 
 g = generator()
 
+
 class SafeTee:
     def __init__(self, tee, lock):
         self.tee_obj = tee
@@ -27,7 +28,7 @@ def safe_tee(g, n):
     lock = threading.Lock()
     return tuple(SafeTee(tee_obj, lock) for tee_obj in itertools.tee(g, n))
 
+
 for x in safe_tee(g, 10):
     t = threading.Thread(target=lambda x: print(sum(x)), args=(x,))
     t.start()
-
