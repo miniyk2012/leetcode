@@ -69,6 +69,11 @@ async def c9():
     await task
 
 
+async def c10():
+    await asyncio.create_task(a())
+    await asyncio.create_task(b())
+
+
 def show_performance(func):
     print('*' * 20)
     start = time.perf_counter()
