@@ -25,6 +25,7 @@ def show_perf(func):
 
 async def c1():
     loop = asyncio.get_running_loop()
+    print('id(loop)', id(loop))
     print('before', loop._default_executor)
     ret = await asyncio.gather(
         loop.run_in_executor(None, a),
@@ -36,6 +37,7 @@ async def c1():
 
 async def c2():
     loop = asyncio.get_running_loop()
+    print('id(loop)', id(loop))
     print('before', loop._default_executor)
     ret = await loop.run_in_executor(None, a)
     print('after', loop._default_executor)
@@ -44,6 +46,7 @@ async def c2():
 
 async def c3():
     loop = asyncio.get_running_loop()
+    print('id(loop)', id(loop))
     print('before', loop._default_executor)
     with concurrent.futures.ProcessPoolExecutor() as e:
         ret = (await asyncio.gather(
@@ -54,7 +57,16 @@ async def c3():
         return ret
 
 
+async def perf_time():
+    start = time.perf_counter()
+    ret = await asyncio.gather(c1(), c2(), c3())
+    print(f'Cost: {time.perf_counter() - start}')
+    return ret
+
+
 if __name__ == '__main__':
+    print(asyncio.run(perf_time()))
+
     show_perf(c1)
     show_perf(c2)
     show_perf(c3)
