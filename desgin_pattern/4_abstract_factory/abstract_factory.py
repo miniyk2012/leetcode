@@ -3,9 +3,9 @@ from decimal import Decimal
 
 
 class AbstractFactory(metaclass=ABCMeta):
-
+        
     @abstractmethod
-    def build_sequence(self):
+    def build_sequence(self):    
         pass
 
     @abstractmethod
