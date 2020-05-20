@@ -5,19 +5,20 @@ from queue import Queue
 
 import dependency_injector.providers as providers
 
-
-def example(example_object, queue):
-    """Put provided object in the provided queue."""
-    queue.put(example_object)
-    queue.put(example_object)
-
-
 # Create thread-local singleton provider for some object (main thread):
-thread_local_object = providers.ThreadLocalSingleton(object)
-# thread_local_object = providers.Singleton(object)
+thread_local_object = providers.ThreadLocalSingleton(object).delegate()
+# thread_local_object = providers.Singleton(object).delegate()
+# thread_local_object = providers.Factory(object).delegate()
 
 # Create singleton provider for thread-safe queue:
 queue = providers.Singleton(Queue)
+
+
+def example(example_object, queue):
+    """Put provided object in the provided queue."""
+    queue.put(example_object())
+    queue.put(example_object())
+
 
 # Create callable provider for example(), inject dependencies:
 # 函数的参数通过注入的方式传入, 这样就不用由客户端传参了
