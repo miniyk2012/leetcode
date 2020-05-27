@@ -6,6 +6,7 @@ from queue import Queue
 import dependency_injector.providers as providers
 
 # Create thread-local singleton provider for some object (main thread):
+# thread_local_object在每个线程中都是隔离的
 thread_local_object = providers.ThreadLocalSingleton(object).delegate()
 # thread_local_object = providers.Singleton(object).delegate()
 # thread_local_object = providers.Factory(object).delegate()
@@ -22,7 +23,6 @@ def example(example_object, queue):
 
 # Create callable provider for example(), inject dependencies:
 # 函数的参数通过注入的方式传入, 这样就不用由客户端传参了
-# thread_local_object在每个线程中都是隔离的
 example = providers.DelegatedCallable(example,
                                       example_object=thread_local_object,
                                       queue=queue)
