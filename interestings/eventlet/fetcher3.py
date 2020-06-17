@@ -2,8 +2,8 @@ import selectors
 import socket
 
 host_to_access = {'www.baidu.com'
-    # , 'www.taobao.com', 'www.tencent.com', 'www.toutiao.com', 'www.meituan.com',
-    #               'www.tmall.com'
+    , 'www.taobao.com', 'www.tencent.com', 'www.toutiao.com', 'www.meituan.com',
+                  'www.tmall.com'
                   }
 selector = selectors.DefaultSelector()
 stopped = False
@@ -99,8 +99,8 @@ class Future:
             fn(self)
 
     def __iter__(self):
-        yield self
-        return self.result
+        result = yield self
+        return result
 
 
 def loop():
