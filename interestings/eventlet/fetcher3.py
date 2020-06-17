@@ -9,55 +9,61 @@ selector = selectors.DefaultSelector()
 stopped = False
 
 
+def connect(sock, address):
+    f = Future()
+    sock.setblocking(False)
+    try:
+        sock.connect(address)
+    except BlockingIOError:
+        pass
+
+    def on_connected():
+        f.set_result(None)
+        print('{} connected'.format(address))
+
+    selector.register(sock.fileno(), selectors.EVENT_WRITE, on_connected)
+    yield from f
+    selector.unregister(sock.fileno())
+
+
+def read(sock):
+    f = Future()
+
+    def on_readable():
+        f.set_result(sock.recv(40))
+
+    selector.register(sock.fileno(), selectors.EVENT_READ, on_readable)
+    chunk = yield from f
+    selector.unregister(sock.fileno())
+    return chunk
+
+
+def read_all(sock):
+    response = []
+    chunk = yield from read(sock)
+    while chunk:
+        response.append(chunk)
+        chunk = yield from read(sock)
+    return b''.join(response)
+
+
 class Fetcher:
     def __init__(self, host):
         self.response = b''  # Empty array of bytes.
         self.host = host
 
     def fetch(self):
+        global stopped
         sock = socket.socket()
-        sock.setblocking(False)
-        try:
-            sock.connect((self.host, 80))
-        except BlockingIOError:
-            pass
-        f = Future()
-
-        def on_connected():
-            f.set_result(None)
-            print('{} connected'.format(self.host))
-
-        selector.register(sock.fileno(), selectors.EVENT_WRITE, on_connected)
-
-        yield f
-        selector.unregister(sock.fileno())
+        yield from connect(sock, (self.host, 80))
 
         request = 'GET / HTTP/1.0\r\nHost: {}\r\n\r\n'.format(self.host)
         sock.send(request.encode('ascii'))
-
-        global stopped
-        while True:
-            f = Future()
-
-            def on_readable():
-                try:
-                    data = sock.recv(40)
-                    f.set_result(data)
-                except socket.error as e:
-                    print(e)
-
-            selector.register(sock.fileno(), selectors.EVENT_READ, on_readable)
-            chunk = yield f
-            selector.unregister(sock.fileno())
-            # print("host:{},read response:{}".format(self.host, chunk))
-            if chunk:
-                self.response += chunk
-            else:
-                print(self.host + " removed, whole response: ", self.response)
-                host_to_access.remove(self.host)
-                if not host_to_access:
-                    stopped = True
-                return
+        self.response = yield from read_all(sock)
+        print("{} response:{}".format(self.host, self.response))
+        host_to_access.remove(self.host)
+        if not host_to_access:
+            stopped = True
 
 
 class Task:
@@ -91,6 +97,10 @@ class Future:
         self.result = result
         for fn in self._callbacks:
             fn(self)
+
+    def __iter__(self):
+        yield self
+        return self.result
 
 
 def loop():
