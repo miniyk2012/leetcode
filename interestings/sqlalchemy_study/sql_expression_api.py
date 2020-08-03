@@ -1,4 +1,4 @@
-from sqlalchemy import select, MetaData, Table, Column, Integer, Unicode, Text, create_engine, and_, or_, not_
+from sqlalchemy import select, MetaData, Table, Column, Integer, Unicode, Text, create_engine, and_, or_, not_, text
 
 metadata = MetaData()
 
@@ -15,7 +15,7 @@ metadata.create_all(engine)
 
 def select_demo():
     connection = engine.connect()
-    s = select([page_table.c.title])
+    s = select([page_table.c.title]).where(text("'name'='ltest2'"))
     print(s)
     result = connection.execute(s)
     print(result.keys())

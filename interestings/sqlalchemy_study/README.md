@@ -1,0 +1,1 @@
+https://github.com/oreillymedia/essential-sqlalchemy-2e
