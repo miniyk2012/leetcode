@@ -5,7 +5,7 @@ from sqlalchemy import DateTime
 from sqlalchemy.orm import relationship, backref, sessionmaker, scoped_session
 
 Base = declarative_base()
-engine = create_engine('sqlite:///:memory:', echo=True, pool_size=20, )
+engine = create_engine('sqlite:///:memory:', echo=True, pool_size=20)
 
 Scoped_Session = scoped_session(sessionmaker(bind=engine))
 Session = sessionmaker(bind=engine)
