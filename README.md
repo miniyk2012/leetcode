@@ -118,7 +118,9 @@
   - 685 有向图冗余连接 todo
 
 
-
+9月3日
+  - 8-queen
+  - 5 longestPalindrome(最长回文)
 
 
 
