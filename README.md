@@ -121,6 +121,12 @@
 9月3日
   - 8-queen
   - 5 longestPalindrome(最长回文)
+  
+9月4日
+    - 257 Binary Tree Paths
+    - 
+    - 
+    
 
 
 
