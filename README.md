@@ -128,10 +128,12 @@
     - 206 Reverse Linked List
 9月5日
     - 11 Container With Most Water
-    - 440 K-th Smallest in Lexicographical Order
+    - 60 第k个排列
 9月6日
     - 107 Binary Tree Level Order Traversal II
     - 240 Search a 2D Matrix II
+9月7日
+    - 440 K-th Smallest in Lexicographical Order
 
 
 
