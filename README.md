@@ -133,7 +133,9 @@
     - 107 Binary Tree Level Order Traversal II
     - 240 Search a 2D Matrix II
 9月7日
-    - 440 K-th Smallest in Lexicographical Order
+    - 347 前 K 个高频元素
+    - offer_62 圆圈中最后剩下的数字(约瑟夫环)
+    - 440 K-th Smallest in Lexicographical Order todo
 
 
 
