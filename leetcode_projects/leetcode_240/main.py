@@ -31,18 +31,6 @@ class Solution:
         return False
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        """基本思想是二分法
-        先决定哪些行可能包含, 然后每行再用二分法"""
-        if len(matrix) == 0 or len(matrix[0]) == 0:
-            return False
-        first_column = [row[0] for row in matrix]
-        last_column = [row[-1] for row in matrix]
-        start_row = bisect.bisect_left(last_column, target)  # 左闭
-        end_row = bisect.bisect(first_column, target)  # 右开
-        for row in range(start_row, end_row):
-            if self.contain(matrix[row], target):
-                return True
-        return False
         """其实有更快的方案
         从二维数组的右上角开始查找。如果当前元素等于目标值，则返回 true。
         如果当前元素大于目标值，则移到左边一列。如果当前元素小于目标值，则移到下边一行。"""
