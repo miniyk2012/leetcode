@@ -1,5 +1,4 @@
 from typing import List
-from collections import deque
 
 
 class Solution:
@@ -14,7 +13,7 @@ class Solution:
         if k == 0:
             self.rets.append(ret[:])
             return
-        for i, v in enumerate(remain[:n-k+1]):
+        for i, v in enumerate(remain[:n - k + 1]):
             ret.append(v)
             self.combine_remain(ret, remain[i + 1:], n, k - 1)
             ret.pop(-1)
