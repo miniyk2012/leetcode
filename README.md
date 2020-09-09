@@ -135,12 +135,12 @@
 9月7日
     - 347 前 K 个高频元素
     - offer_62 圆圈中最后剩下的数字(约瑟夫环)
-    - 440 K-th Smallest in Lexicographical Order todo
 9月8日
     - 77 组合
 9月9日
     - offer_38 字符串排列
     - 39 组合总和
+    - 440 K-th Smallest in Lexicographical Order todo
 
 
 
