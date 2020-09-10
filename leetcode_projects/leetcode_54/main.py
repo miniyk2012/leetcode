@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    def spiralOrder2(self, matrix: List[List[int]]) -> List[int]:
         if matrix == []:
             return []
         self.matrix = matrix
@@ -27,6 +27,28 @@ class Solution:
         if row_end - 1 < row_start + 1 or col_start + 1 > col_end - 1:
             return
         self.order(row_start + 1, row_end - 1, col_start + 1, col_end - 1)
+
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        """模拟最方便"""
+        if not matrix or not matrix[0]:
+            return list()
+        rows, columns = len(matrix), len(matrix[0])
+        visited = [[False] * columns for _ in range(rows)]
+        total = rows * columns
+        order = [0] * total
+
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        row, column = 0, 0
+        directionIndex = 0
+
+        for i in range(total):
+            order[i] = matrix[row][column]
+            visited[row][column] = True
+            next_row, next_column = row + directions[directionIndex][0], column + directions[directionIndex][1]
+            if not (next_row < rows and next_column < columns and not visited[next_row][next_column]):
+                directionIndex = (directionIndex + 1) % 4
+            row, column = row + directions[directionIndex][0], column + directions[directionIndex][1]
+        return order
 
 
 if __name__ == '__main__':
