@@ -140,7 +140,11 @@
 9月9日
     - offer_38 字符串排列
     - 39 组合总和
+9月10日
+    - 40 组合数2
+    - 54 螺旋矩阵
     - 440 K-th Smallest in Lexicographical Order todo
+
 
 
 
