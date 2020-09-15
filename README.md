@@ -147,11 +147,17 @@
     - 42 接水
     - 216 组合3
 9月12日
-    - 440 K-th Smallest in Lexicographical Order todo
+
     - 637 树每层的平均值
     - 430 扁平化多级双向链表
 9月14日
     - 79 单词搜索
     - 59 队列的最大值
+
+- 440 K-th Smallest in Lexicographical Order todo
+面试题 03.02. 栈的最小值（难度：⭐⭐）（使用辅助栈）
+146. LRU缓存机制 （难度：⭐⭐⭐⭐）（使用有序字典）
+716. 最大栈（难度：⭐⭐⭐）（使用辅助栈）
+
 
 
