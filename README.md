@@ -150,6 +150,8 @@
     - 440 K-th Smallest in Lexicographical Order todo
     - 637 树每层的平均值
     - 430 扁平化多级双向链表
-
+9月14日
+    - 79 单词搜索
+    - 59 队列的最大值
 
 
