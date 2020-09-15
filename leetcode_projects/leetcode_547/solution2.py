@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findCircleNum(self, M: List[List[int]]) -> int:
+    def findCircleNum2(self, M: List[List[int]]) -> int:
         self.group_id = 0
         self.M = M
         group = [0] * len(M)
@@ -23,6 +23,21 @@ class Solution:
                 group[j] = self.group_id
                 self.dfs_group(j, group)
 
+    def findCircleNum(self, M: List[List[int]]) -> int:
+        visited = [False] * len(M)
+        count = 0
+
+        def dfs(i):
+            for j in range(len(M)):
+                if not visited[j] and M[i][j] == 1:
+                    visited[j] = True
+                    dfs(j)
+
+        for i in range(len(M)):
+            if not visited[i]:
+                dfs(i)
+                count += 1
+        return count
 
 
 if __name__ == '__main__':
