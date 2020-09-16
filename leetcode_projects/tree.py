@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import deque
 from typing import List
 
 
@@ -54,6 +55,22 @@ def dfs_visit_tree2(root):
         stack.append(top.right)
         stack.append(top.left)
         ret.append(top.val)
+
+
+def bfs_visit_tree(root):
+    """层序遍历"""
+    ret = []
+    if not root:
+        return ret
+    stack: deque = deque([root])
+    while stack:
+        top = stack.popleft()
+        if top.left:
+            stack.append(top.left)
+        if top.right:
+            stack.append(top.right)
+        ret.append(top.val)
+    return ret
 
 
 def construct_tree(l):
