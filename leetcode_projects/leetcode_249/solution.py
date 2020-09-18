@@ -13,7 +13,6 @@ class Solution:
                 a = string[0]
                 for x in string[1:]:
                     key.append((ord(x) - ord(a)) % 26)
-                    x = a
                 key = tuple(key)
                 map_groups[key].append(string)
         return list(map_groups.values())
