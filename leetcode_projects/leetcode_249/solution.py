@@ -1,6 +1,5 @@
 from typing import List
 from collections import defaultdict
-from functools import reduce
 
 
 class Solution:
