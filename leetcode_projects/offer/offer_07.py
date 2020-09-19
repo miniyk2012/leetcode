@@ -34,7 +34,7 @@ class Solution:
         left_length = index - start_in
         right_length = end_in - index
         if left_length > 0:
-            head.left = self.build(start_pre + 1, start_pre + left_length, start_in, start_in + left_length-1)
+            head.left = self.build(start_pre + 1, start_pre + left_length, start_in, start_in + left_length - 1)
         if right_length > 0:
             head.right = self.build(start_pre + left_length + 1, end_pre, index + 1, end_in)
         return head
