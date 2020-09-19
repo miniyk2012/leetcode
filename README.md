@@ -166,7 +166,9 @@
 9月18日
     - 249. 移位字符串分组
     - 146. LRU缓存机制 （难度：⭐⭐⭐⭐）（使用有序字典）
-
+9月19日
+    - Offer 07. 重建二叉树
+    - 404. 左叶子之和
 - 440 K-th Smallest in Lexicographical Order todo
 
 
