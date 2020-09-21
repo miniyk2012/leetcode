@@ -169,6 +169,10 @@
 9月19日
     - Offer 07. 重建二叉树
     - 404. 左叶子之和
+9月20题
+    - 300. 最长上升子序列
+    - 538. 把二叉搜索树转换为累加树
+
 - 440 K-th Smallest in Lexicographical Order todo
 
 
