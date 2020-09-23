@@ -174,7 +174,9 @@
     - 538. 把二叉搜索树转换为累加树
 9月21日
     - 199 树的右视图
-    - 440 K-th Smallest in Lexicographical Order todo
+9月22日
+    - 440 K-th Smallest in Lexicographical Order (确实难)
+    - 617 合并二叉树  
 
 
 
