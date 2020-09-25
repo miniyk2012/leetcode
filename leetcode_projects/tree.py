@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import deque
 from typing import List
 
 
@@ -59,17 +58,41 @@ def dfs_visit_tree2(root):
 
 def bfs_visit_tree(root):
     """层序遍历"""
+
+    def has_next_level(nodes):
+        for node in nodes:
+            if node and (node.left or node.right):
+                return True
+        return False
+
     ret = []
     if not root:
         return ret
-    stack: deque = deque([root])
+    stack = [root]
     while stack:
-        top = stack.popleft()
-        if top.left:
-            stack.append(top.left)
-        if top.right:
-            stack.append(top.right)
-        ret.append(top.val)
+        level_length = len(stack)
+        flag = has_next_level(stack[:level_length])
+        if flag:
+            for _ in range(level_length):
+                top = stack.pop(0)
+                stack.append(top.left if top else None)
+                stack.append(top.right if top else None)
+                ret.append(top.val if top else None)
+        else:
+            for _ in range(level_length):
+                top = stack.pop(0)
+                if top and top.left:
+                    stack.append(top.left)
+                if top and top.right:
+                    stack.append(top.right)
+                ret.append(top.val if top else None)
+    # 去掉最后几个连续的None
+    length = len(ret)
+    for i in range(length-1, 0, -1):
+        if ret[i] is None:
+            ret.pop(i)
+        else:
+            break
     return ret
 
 
@@ -122,3 +145,9 @@ def destruct_listnode(l: ListNode):
         ret.append(cur.val)
         cur = cur.next
     return ret
+
+
+def test_bfs_visit_tree():
+    l = [2, 1, 3, None, 4]
+    tree = construct_tree(l)
+    assert bfs_visit_tree(tree) == l
