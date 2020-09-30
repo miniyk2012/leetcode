@@ -53,7 +53,7 @@ class Solution:
                 stack3.append(right)
         return head
 
-
+e
 if __name__ == '__main__':
     s = Solution()
     l1 = [1, 3, 2, 5]
