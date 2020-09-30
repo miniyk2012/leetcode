@@ -1,8 +1,9 @@
+from collections import deque
 from typing import List
 
 from leetcode_projects.tree import TreeNode
 
-from collections import deque
+
 class Solution:
     def postorderTraversal1(self, root: TreeNode) -> List[int]:
         """递归做法"""
@@ -25,15 +26,16 @@ class Solution:
             return ret
         stack = deque([root])
         while stack:
-            top = stack[0]
+            top = stack[-1]
             if top.left:
-                stack.appendleft(top.left)
-                continue
-            if top.right:
-                stack.appendleft(top.right)
-                continue
-            stack.popleft()
-            ret.append(top.val)
+                stack.append(top.left)
+                top.left = None  # 清空表示该节点已经处理过左子树, 后续就不用再处理了
+            elif top.right:
+                stack.append(top.right)
+                top.right = None
+            else:
+                ret.append(top.val)
+                stack.pop()
         return ret
 
 
