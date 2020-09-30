@@ -177,7 +177,8 @@
 9月22日
     - 440 K-th Smallest in Lexicographical Order (确实难)
     - 617 合并二叉树  
-
+9月30日
+    - 145 后序遍历
 
 
 
