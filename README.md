@@ -180,6 +180,11 @@
 9月30日
     - 145 后序遍历
     - 701 二叉搜索树中的插入操作
+10月9日
+    - 1542 awesome substring todo: https://www.youtube.com/watch?v=b0oxAd94FOg&list=PLLuMmzMTgVK49Hph4vV8DAzGZpj4azwmz&ab_channel=HuaHua
+    - 325 和等于 k 的最长子数组长度 done
+    - 560 和为K的子数组 done
+    - 1074 元素和为目标值的子矩阵数量 todo
 
 
 
