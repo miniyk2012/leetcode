@@ -18,6 +18,7 @@ class Solution:
                 idx[s] = 1
         return ans
 
+
 if __name__ == '__main__':
     nums = [1, 1, 1]
     k = 2

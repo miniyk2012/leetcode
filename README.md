@@ -184,6 +184,9 @@
     - 1542 awesome substring todo: https://www.youtube.com/watch?v=b0oxAd94FOg&list=PLLuMmzMTgVK49Hph4vV8DAzGZpj4azwmz&ab_channel=HuaHua
     - 325 和等于 k 的最长子数组长度 done
     - 560 和为K的子数组 done
+
+10月28日
+    - offer_47 礼物的最大价值
     - 1074 元素和为目标值的子矩阵数量 todo
 
 
