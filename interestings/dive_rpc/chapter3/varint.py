@@ -18,7 +18,7 @@ class VarInt:
             every_bytes.append(first_bytes)
             int_value >>= cls.offset  # 每次右移7位
 
-        for idx in range(len(every_bytes) - 1):
+        for idx in range(len(every_bytes) - 1):  # 除了最后一个字节外,其他字节首位置为1
             every_bytes[idx] |= cls.varint_exists_next_byte_bit
         return bytes(every_bytes)
 
@@ -34,6 +34,6 @@ class VarInt:
 
 
 if __name__ == '__main__':
-    encoded = VarInt.encode(0)
+    encoded = VarInt.encode(128)
     print(encoded.hex())
     print(VarInt.decode(encoded))
