@@ -14,6 +14,7 @@ class TestVarInt:
         assert VarInt.encode(16384).hex() == '808001'
         assert VarInt.encode(500).hex() == 'f403'
         assert VarInt.encode(133979).hex() == 'db9608'
+        assert VarInt.encode(1337).hex() == 'b90a'
 
     @staticmethod
     def test_decode():
@@ -29,6 +30,7 @@ class TestZigZag:
         assert ZigZag.encode(157) == VarInt.encode(314)
         assert ZigZag.encode(-250) == VarInt.encode(499)
         assert ZigZag.encode(0) == VarInt.encode(0)
+
 
     def test_decode(self):
         bytes_value = VarInt.encode(500)
