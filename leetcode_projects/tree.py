@@ -14,9 +14,9 @@ class TreeNode:
 
 
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x, next=None):
         self.val = x
-        self.next = None
+        self.next = next
 
     def __repr__(self):
         return str(self.val)
@@ -88,7 +88,7 @@ def bfs_visit_tree(root):
                 ret.append(top.val if top else None)
     # 去掉最后几个连续的None
     length = len(ret)
-    for i in range(length-1, 0, -1):
+    for i in range(length - 1, 0, -1):
         if ret[i] is None:
             ret.pop(i)
         else:
