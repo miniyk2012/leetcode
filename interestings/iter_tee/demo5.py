@@ -1,5 +1,6 @@
 import itertools
 import threading
+import time
 
 
 def generator():
@@ -7,10 +8,7 @@ def generator():
         yield i
 
 
-g = generator()
-
-
-class SafeTee:
+class SafeTeeIterator:
     def __init__(self, tee, lock):
         self.tee_obj = tee
         self.lock = lock
@@ -23,12 +21,45 @@ class SafeTee:
         return self
 
 
+def safe_tee_gen(tee, lock):
+    while True:
+        with lock:
+            try:
+                yield next(tee)
+            except StopIteration:
+                break
+
+
 def safe_tee(g, n):
     """线程安全的tee"""
     lock = threading.Lock()
-    return tuple(SafeTee(tee_obj, lock) for tee_obj in itertools.tee(g, n))
+    return tuple(SafeTeeIterator(tee_obj, lock) for tee_obj in itertools.tee(g, n))
 
 
-for x in safe_tee(g, 10):
-    t = threading.Thread(target=lambda x: print(sum(x)), args=(x,))
-    t.start()
+def safe_tee2(g, n):
+    lock = threading.Lock()
+    return tuple(safe_tee_gen(tee_obj, lock) for tee_obj in itertools.tee(g, n))
+
+
+if __name__ == '__main__':
+    g1 = generator()
+    start = time.time()
+    threads = []
+    for x in safe_tee2(g1, 10):
+        t = threading.Thread(target=lambda x: print(sum(x)), args=(x,))
+        threads.append(t)
+        t.start()
+    for t in threads:
+        t.join()
+    print(time.time() - start)
+
+    g2 = generator()
+    start = time.time()
+    threads2 = []
+    for x in safe_tee(g2, 10):
+        t = threading.Thread(target=lambda x: print(sum(x)), args=(x,))
+        threads2.append(t)
+        t.start()
+    for t in threads2:
+        t.join()
+    print(time.time() - start)
