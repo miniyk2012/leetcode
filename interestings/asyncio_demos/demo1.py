@@ -1,8 +1,13 @@
 import asyncio
 
 
+async def print_a():
+    print('a')
+
+
 async def compute(x, y):
     print("Compute %s + %s ..." % (x, y))
+    await print_a()
     await asyncio.sleep(1.0)
     return x + y
 
