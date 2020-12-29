@@ -1,6 +1,8 @@
+import collections
 import itertools
 import threading
 import time
+import types
 
 
 def generator():
@@ -43,6 +45,13 @@ def safe_tee2(g, n):
 
 if __name__ == '__main__':
     g1 = generator()
+    print(isinstance(g1, collections.abc.Iterator))  # True
+    print(isinstance(g1, types.GeneratorType))  # True
+    print(type(g1))
+    a = enumerate([1, 2, 33])
+    print(isinstance(a, collections.abc.Iterator))  # True
+    print(isinstance(a, types.GeneratorType))  # False
+    print(type(a))
     start = time.time()
     threads = []
     for x in safe_tee2(g1, 10):
