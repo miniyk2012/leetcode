@@ -1,6 +1,6 @@
 # leetcode刷题
 
-[](https://wakatime.com/badge/github/miniyk2012/leetcode.svg)
+![](https://wakatime.com/badge/github/miniyk2012/leetcode.svg)
 
 ## ![version](https://img.shields.io/badge/python-3.7-blue)
 
