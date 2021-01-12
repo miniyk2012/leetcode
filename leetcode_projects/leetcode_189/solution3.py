@@ -7,7 +7,11 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         k = k % len(nums)
-        pass
+        nums[:len(nums) - k] = nums[len(nums) - k - 1::-1]
+        nums[len(nums) - k:] = nums[:-k - 1:-1]
+        nums[:] = nums[::-1]
+        return nums
+
 
 if __name__ == '__main__':
     s = Solution()

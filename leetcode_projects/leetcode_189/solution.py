@@ -5,7 +5,7 @@ class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
         Do not return anything, modify nums in-place instead.
-        超时解法
+        超时揭发
         """
         k = k % len(nums)
         for _ in range(k):
