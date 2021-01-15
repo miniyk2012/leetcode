@@ -1,6 +1,29 @@
 from typing import List
 
 
+class UnionSet:
+    def __init__(self):
+        self.parent = dict()
+        self.count = 0
+
+    def find(self, x):
+        if x not in self.parent:
+            self.parent[x] = x
+            self.count += 1
+        if self.parent[x] == x:
+            return x
+        self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return
+        self.count -= 1
+        self.parent[root_x] = self.parent[root_y]
+
+
 class Solution:
     def removeStones(self, stones: List[List[int]]) -> int:
         """
@@ -10,7 +33,10 @@ class Solution:
         若无须给出移除石头的顺序, 可以用并查集的方法直接求出联通分量个数, 这最简单
         若要给出移除石头顺序的方案, 可以通过遍历的方式（深度优先遍历或者广度优先遍历）遍历到这个连通图的所有顶点, 那么就可以按照遍历的方式 逆向 移除石头，最后只剩下一块石头。
         """
-        pass
+        union_set = UnionSet()
+        for x, y in stones:
+            union_set.union(x, y + 10000)
+        return len(stones) - union_set.count
 
 
 if __name__ == '__main__':
