@@ -9,18 +9,16 @@ class Node:
 
 
 class Solution:
-    """递归实现前序遍历"""
+    """迭代实现前序遍历"""
 
     def preorder(self, root: 'Node') -> List[int]:
-        self.result = []
-        stack = []
         if not root:
-            return self.result
-        stack.append(root)
+            return []
+        result = []
+        stack = [root]
         while stack:
             tail = stack.pop()
-            self.result.append(tail.val)
-            for child in tail.children[::-1]:
-                stack.append(child)
+            result.append(tail.val)
+            stack.extend(tail.children[::-1])
 
-        return self.result
+        return result
