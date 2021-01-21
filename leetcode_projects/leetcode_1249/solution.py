@@ -11,11 +11,11 @@ class Solution:
                 else:
                     right_redundant_positions.append(i)
         will_remove_positions = left_parentheses_positions + right_redundant_positions
-        result = ''
+        result = []
         for i, char in enumerate(s):
             if i not in will_remove_positions:
-                result += char
-        return result
+                result.append(char)
+        return ''.join(result)
 
 
 if __name__ == '__main__':
