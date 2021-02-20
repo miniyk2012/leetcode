@@ -29,15 +29,16 @@ logger = logging.getLogger('yangkai')
 
 # print(logger.parent.handlers)
 # print(logger.parent)
-werkzeug_logger = logging.getLogger('werkzeug')
-werkzeug_logger.disabled = True
+# werkzeug_logger = logging.getLogger('werkzeug')
+# werkzeug_logger.disabled = True
 @app.route('/')
 def hello():
     name = request.args.get("name", "World")
-    logger.info('hello')
+    # 可以发现, 有2个logger, 一个是yangkai, 还有一个是werkzeug
     print(logging.root.manager.loggerDict)
     loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
     print(loggers)
+    logger.info('hello')
     return f'Hello, {escape(name)}!'
 
 
