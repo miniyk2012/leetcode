@@ -25,6 +25,8 @@ ch = logging.StreamHandler()
 root.addHandler(ch)
 if __name__ == '__main__':
     logger = logging.getLogger('yangkai')
+    logger2 = logging.getLogger('yangkai.foo')
     print(logger.parent.handlers)
     logger.info('yangk')
+    logger2.info('yangkai2')
     print('loggers:', logging.root.manager.loggerDict)
