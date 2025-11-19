@@ -29,5 +29,5 @@ def main(file_path, delimiter):
 
 
 if __name__ == '__main__':
-    # python main.py iris.csv --delimiter ,
+    # python solution.py iris.csv --delimiter ,
     main()

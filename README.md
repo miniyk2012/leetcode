@@ -2,7 +2,7 @@
 
 ![](https://wakatime.com/badge/github/miniyk2012/leetcode.svg)
 
-## ![version](https://img.shields.io/badge/python-3.7-blue)
+## ![version](https://img.shields.io/badge/python-3.9-blue)
 
 6月13日
   - 1021, 921
