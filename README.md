@@ -266,3 +266,13 @@
   - 1249 移除无效的括号
   - 589 N叉树的前序遍历
 
+11月19日
+  - 49 Group Anagrams
+  - 128 Longest Consecutive Sequence 
+    很有意思, 不需要排序, 虽然2重循环, 但因为数组中每个数不是开头就不进内循环, 因此每个数只会进入内层循环一次, 因此复杂度是O(n)
+  - 11 Container With Most Water
+  - 15 3Sum, 很巧妙, 需要仔细思考, 第二轮只迭代一次
+  - 3 Longest Substring Without Repeating Characters
+    需要考虑当迭代截止时, 如果最后的那组长度还未计算的场景
+11月21日
+  - 560 和为 K 的子数组
