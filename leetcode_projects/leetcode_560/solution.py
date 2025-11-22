@@ -1,5 +1,5 @@
 from typing import List
-
+from collections import defaultdict
 
 class Solution:
     """和为K的子数组"""
@@ -8,14 +8,13 @@ class Solution:
         ret = 0
         total = 0
         length = len(nums)
-        memo = {}
+        memo = defaultdict(list)  # 满足前缀和为total的索引有哪些, 初始和为0的索引认为是-1, 避免遗漏从头开始的子数组
+        memo[0].append([-1])
         for i in range(0, length):
             total = total + nums[i]
-            print(total, memo)
-            if total in memo:
-                ret += 1
-            else:
-                memo[k+nums[i]] = True
+            if total-k in memo:
+                ret += len(memo[total-k])
+            memo[total].append(i)
         return ret
 
         return 0

@@ -16,8 +16,7 @@ class Solution:
                 if -(num+c) in memo and (-(num+c), c) not in repeat:
                     ret.append([num, -(num+c), c])
                     repeat.add((-(num+c), c))
-                else:
-                    memo[c] = True
+                memo[c] = True
             pre_first = num
         return ret
 
