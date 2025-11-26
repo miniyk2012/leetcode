@@ -289,3 +289,9 @@
   - 102 Binary Tree Level Order Traversal
   - 287 Find the Duplicate Number
   - 19 Remove Nth Node From End of List
+
+11月25日
+  - 23 Merge k Sorted Lists
+
+11月26日
+  - 14 Longest Common Prefix
