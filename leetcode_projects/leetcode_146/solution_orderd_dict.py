@@ -7,6 +7,7 @@ class LRUCache(OrderedDict):
         """
         :type capacity: int
         """
+        super().__init__()
         self.capacity = capacity
 
     def get(self, key):

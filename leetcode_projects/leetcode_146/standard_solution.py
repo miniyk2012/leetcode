@@ -14,7 +14,7 @@ class DLinkedNode():
         self.next = None
 
 
-class LRUCache():
+class LRUCache:
     def _add_node(self, node):
         """
         Always add the new node right after head.
@@ -58,6 +58,7 @@ class LRUCache():
         self.cache = {}
         self.size = 0
         self.capacity = capacity
+        # dummy head and tail
         self.head, self.tail = DLinkedNode(), DLinkedNode()
 
         self.head.next = self.tail
@@ -72,7 +73,7 @@ class LRUCache():
         if not node:
             return -1
 
-        # move the accessed node to the head;
+        # move the accessed node to the head
         self._move_to_head(node)
         return node.value
 
