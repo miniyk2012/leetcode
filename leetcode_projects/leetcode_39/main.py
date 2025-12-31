@@ -10,7 +10,7 @@ class Solution:
 
     def dfs(self, start, target, ret):
         if target == 0:
-            self.rets.append(ret[:])
+            self.rets.append(ret[:])  # 比如ret==[2,3,3]
             return
         for i in range(start, len(self.candidates)):
             candidate = self.candidates[i]
@@ -23,7 +23,7 @@ class Solution:
 
 def test():
     def assert_equal_list(l1: List[List[int]], l2: List[List[int]]):
-        print(f'l1={l1}\nl2={l2}')
+        print(f'result={l1}\nexpect={l2}')
         assert len(l1) == len(l2)
         assert set(tuple(e) for e in l1) == set(tuple(e) for e in l2)
         print()
