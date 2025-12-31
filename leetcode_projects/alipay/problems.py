@@ -41,11 +41,12 @@ def give_birth_num(n):
         if end >=0:
             breeders = sum(counts_of_month[start:end+1])
         counts_of_month[month] = breeders
+    print(counts_of_month[-10:])
     return sum(counts_of_month[-10:])
 
 # 测试示例
 if __name__ == "__main__":
-    for target_month in range(1, 15):
+    for target_month in range(0, 15):
         result = calculate_squirrel_pairs(target_month)
         result2= give_birth_num(target_month)
         print(f"第{target_month}个月的松鼠总对数：{result:}, {result2:}")
